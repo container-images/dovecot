@@ -1,5 +1,5 @@
-# postfix
-Postfix mail server container.
+# dovecot
+dovecot container for IMAP server.
 
 
 ## How to build the container on 25 port
@@ -25,8 +25,8 @@ parameters with --privileged parameter.
 
 ## How to test the dovecot service
 
-Command for testing Postfix docker container with
-dovecot is ```openssl```.
+Command for testing Dovecot container with
+is ```openssl```.
 
 Telnet has not to be used because of all
 communication is encrypted from the beginning.
