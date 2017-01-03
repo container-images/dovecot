@@ -2,7 +2,7 @@
 dovecot container for IMAP server.
 
 
-## How to build the container on 25 port
+## How to build the container
 
 ```docker build --tag=docker .```
 
