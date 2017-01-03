@@ -86,7 +86,7 @@ chown root:root /var/certs
 mkdir -p /var/dovecot
 chown root:root /var/dovecot
 cp /files/*.{crt,pem} /etc/postfix/
-
+mkdir -p /var/spool/postfix
 
 modify_etc_services
 modify_main_cf

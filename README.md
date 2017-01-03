@@ -13,7 +13,6 @@ Postfix mail server container.
 Command for running dovecot docker container:
 ```
 docker run -it -e MYHOSTNAME=localhost -e DEBUG_MODE \
-    -p 25:10025 -p 587:10587 -p 143:10143 \
     -v $PASSWD=/etc/passwd --privileged \
     -v $SHADOW=/etc/shadow \
     dovecot

@@ -2,30 +2,30 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: postfix
+  name: dovecot
   annotations:
-    description: postfix with dovecot as IMAP server
+    description: dovecot container for IMAP server
     tags: imap-server
 labels:
-  template: postfix
-  group: postfix
+  template: dovecot
+  group: dovecot
   version: 3.1.3
 objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    name: "postfix-dovecot-container"
+    name: "dovecot-container"
   spec:
-    dockerImageRepository: "phracek/postfix"
+    dockerImageRepository: "phracek/dovecot"
   tags:
     - name: "latest"
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
-    name: "postfix-dovecot-container"
+    name: "dovecot-container"
   spec:
     selector:
-      name: "postfix-dovecot-container"
+      name: "dovecot-container"
     strategy:
       type: "Rolling"
     triggers:
@@ -33,24 +33,20 @@ objects:
         imageChangeParams:
           automatic: true
           containerNames:
-            - "postfix-dovecot-container"
+            - "dovecot-container"
           from:
             kind: "ImageStreamTag"
-            name: "postfix:latest"
+            name: "dovecot:latest"
     replicas: 1
     template:
       metadata:
-        name: "postfix-dovecot-container"
+        name: "dovecot-container"
         labels:
-          name: "postfix-dovecot-container"
+          name: "dovecot-container"
       spec:
         containers:
-          - name: "postfix-dovecot-container"
-            image: "postfix:latest"
-            ports:
-              - containerPort: 10025
-              - containerPort: 10587
-              - containerPort: 10465
+          - name: "dovecot-container"
+            image: "dovecot:latest"
             volumeMounts:
               - mountPath: /var/spool/postfix
                 name: spool-postfix
