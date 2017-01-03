@@ -13,27 +13,14 @@ if [[ ! -z "${DEBUG_MODE}" ]]; then
     fi
 fi
 
-postfix start
 
 dovecot
 
 while true; do
-    state=$(script -c 'postfix status' | grep postfix/postfix-script)
-    echo $state
     dovecot_pid=$(cat /var/run/dovecot/master.pid)
-    echo $dovecot_pid
-    if [[ "$state" != "${state/is running/}" ]]; then
-        PID=${state//[^0-9]/}
-        if [[ -z $PID ]]; then
-            continue
-        fi
-        if [[ ! -d "/proc/$PID" ]]; then
-            echo "Postfix proces $PID does not exist."
-            break
-        fi
-        sleep 10
-    else
-        echo "Postfix is not running."
-        break
-    fi
+	if [[ ! -f "/proc/$PID" ]]; then
+	    echo "Dovecot proces $dovecot_pid does not exist."
+	    break
+	fi
+	sleep 10
 done

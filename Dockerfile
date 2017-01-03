@@ -13,20 +13,14 @@ FROM fedora:24
 
 RUN dnf install -y --setopt=tsflags=nodocs \
                  findutils openssl-libs \
-                 dovecot passwd shadow-utils && \
+                 dovecot postfix passwd shadow-utils && \
     dnf -y clean all
 
 MAINTAINER "Petr Hracek" <phracek@redhat.com>
 
-ENV POSTFIX_SMTP_PORT=10025 POSTFIX_IMAP_PORT=10143 POSTFIX_SUBM_PORT=10587
-
 ADD files /files
 
 RUN /files/dovecot_config.sh
-
-EXPOSE 10025
-EXPOSE 10143
-EXPOSE 10587
 
 # Postfix UID based from Fedora
 # USER 89
