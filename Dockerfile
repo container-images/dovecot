@@ -1,24 +1,27 @@
-FROM fedora:24
+FROM registry.fedoraproject.org/fedora:26
 
-# Postfix image for OpenShift.
-#
-# Volumes:
-#  * /var/spool/postfix -
-#  * /var/spool/mail -
-#  * /var/log/postfix - Postfix log directory
-# Environment:
-#  * $MYHOSTNAME - Hostname for Postfix image
-# Additional packages
-#  * findutils are needed in case fedora:24 is loaded from docker.io.
+ENV NAME=dovecot ARCH=x86_64
+LABEL MAINTAINER "Petr Hracek" <phracek@redhat.com>
+LABEL   summary="Dovecot container for IMAP server." \
+        name="$FGC/$NAME" \
+        version="0" \
+        release="1.$DISTTAG" \
+        architecture="$RCH" \
+        com.redhat.component="$NAME" \
+        usage="docker run -it -e MYHOSTNAME=localhost -v $PASSWD=/etc/passwd --privileged -v $SHADOW=/etc/shadow dovecot" \
+        help="Runs dovecot. No dependencies. See Help File belowe for more detailes." \
+        description="Dovecot container for IMAP server." \
+        io.k8s.description="Dovecot container for IMAP server." \
+        io.k8s.diplay-name="3.1" \
+        io.openshift.tags="dovecot"
 
 RUN dnf install -y --setopt=tsflags=nodocs \
                  findutils openssl-libs \
-                 dovecot postfix passwd shadow-utils && \
+                 dovecot passwd shadow-utils && \
     dnf -y clean all
 
-MAINTAINER "Petr Hracek" <phracek@redhat.com>
-
 ADD files /files
+ADD README.md /
 
 RUN /files/dovecot_config.sh
 
