@@ -17,7 +17,7 @@ LABEL   summary="Dovecot container for IMAP server." \
 
 RUN dnf install -y --setopt=tsflags=nodocs \
                  findutils openssl-libs \
-                 dovecot passwd shadow-utils && \
+                 dovecot passwd shadow-utils postfix && \
     dnf -y clean all
 
 ADD files /files
