@@ -1,0 +1,10 @@
+maintainer: Petr Hracek <phracek@redhat.com>
+
+short_description: Dovecot container for IMAP server.
+description: Dovecot is an IMAP server for Linux/UNIX-like systems, written with security primarily in mind.
+
+envvars:
+  name: dovecot
+  version: 0
+  release: 1
+  arch: x86_64

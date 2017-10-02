@@ -1,0 +1,10 @@
+language: python
+python:
+  - 3.6
+sudo: required
+services:
+  '- docker'
+script:
+  - 'make test-image SELECTORS="--distro fedora-26-x86_64.yaml --multispec-selector variant=upstream"'
+notifications:
+  email: false

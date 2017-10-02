@@ -1,0 +1,21 @@
+version: 1
+
+specs:
+  distroinfo:
+    fedora:
+      distros:
+        - fedora-26-x86_64
+      vendor: "Fedora Project"
+  variant:
+    upstream:
+      image_repository: "docker.io/modularitycontainers/dovecot"
+      readme_description: |-
+        [![Build Status](https://travis-ci.org/container-images/dovecot.svg?branch=master)](https://travis-ci.org/container-images/dovecot)
+
+        There is a detailed information about this image available in its [help
+        page](https://github.com/container-images/dovecot/blob/master/help/help.md).
+    downstream:
+      image_repository: "candidate-registry.fedoraproject.org/f{{ config.os.version }}/dovecot"
+      readme_description: |-
+        There is a detailed information about this image available in its [help
+        page](https://src.fedoraproject.org/container/dovecot/blob/master/f/root/help.1).

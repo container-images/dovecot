@@ -1,0 +1,37 @@
+# dovecot
+{{ spec.short_description }}
+
+
+## How to build the container
+
+```docker build --tag={{ spec.image_repository }} .```
+
+
+## How to use the {{ spec.envvars.name }} container with built IMAP
+
+
+Command for running {{ spec.envvars.name }} docker container:
+```
+docker run -it -e MYHOSTNAME=localhost -e DEBUG_MODE \
+    -v /etc/dovecot/:/etc/dovecot \
+    dovecot
+```
+
+The `/etc/dovecot` directory contains certificates and configuration files used by {{ spec.envvars.name }}.
+For more information see `https://wiki2.dovecot.org/SSL/DovecotConfiguration`.
+
+Environment variable DEBUG_MODE is used for debugging proposes
+from {{ spec.envvars.name }} point of view.
+
+## Basic {{ spec.envvars.name }} configuration
+
+## How to test the {{ spec.envvars.name }} service
+
+Command for testing {{ spec.envvars.name }} container with
+is ```openssl```.
+
+Telnet can not be used because of communication is encrypted.
+
+Testing {{ spec.envvars.name }} service with ```openssl```
+
+TODO

@@ -1,10 +1,10 @@
 # dovecot
-dovecot container for IMAP server.
+Dovecot container for IMAP server.
 
 
 ## How to build the container
 
-```docker build --tag=docker .```
+```docker build --tag=docker.io/modularitycontainers/dovecot .```
 
 
 ## How to use the dovecot container with built IMAP
@@ -13,26 +13,25 @@ dovecot container for IMAP server.
 Command for running dovecot docker container:
 ```
 docker run -it -e MYHOSTNAME=localhost -e DEBUG_MODE \
-    -v $PASSWD=/etc/passwd --privileged \
-    -v $SHADOW=/etc/shadow \
+    -v /etc/dovecot/:/etc/dovecot \
     dovecot
 ```
 
+The `/etc/dovecot` directory contains certificates and configuration files used by dovecot.
+For more information see `https://wiki2.dovecot.org/SSL/DovecotConfiguration`.
+
 Environment variable DEBUG_MODE is used for debugging proposes
-from Postfix and dovecot point of views.
-If you want to share host users to container add -v $PASSWD and -v $SHADOW
-parameters with --privileged parameter.
+from dovecot point of view.
+
+## Basic dovecot configuration
 
 ## How to test the dovecot service
 
-Command for testing Dovecot container with
+Command for testing dovecot container with
 is ```openssl```.
 
-Telnet has not to be used because of all
-communication is encrypted from the beginning.
+Telnet can not be used because of communication is encrypted.
 
 Testing dovecot service with ```openssl```
 
-```
-openssl s_client -starttls imap -connect localhost:143
-```
+TODO
