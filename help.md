@@ -27,6 +27,7 @@ To get the memcached container image on your local system, run the following:
 
 TODO
 # SECURITY IMPLICATIONS
+WRITE port
 
 # SEE ALSO
 Dovecot page
