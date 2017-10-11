@@ -13,5 +13,3 @@ run: build
 	           -v /var/spool/mail:/var/spool/mail \
 	           -e MYHOSTNAME=localhost $(IMAGE_NAME)
 
-test:
-	run_test.sh

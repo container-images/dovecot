@@ -25,6 +25,10 @@ To get the memcached container image on your local system, run the following:
 
 * /var/spool/mail - contains directories for INBOXes.
 
+TODO
+# SECURITY IMPLICATIONS
+WRITE port
+
 # SEE ALSO
 Dovecot page
 <https://www.dovecot.org/>
