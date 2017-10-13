@@ -32,7 +32,7 @@ test: build
 	cd tests; MODULE=docker URL="docker=${IMAGE_REPOSITORY}" DOCKERFILE="../$(DOCKERFILE)" VERSION=${VERSION} DISTRO=${DISTRO} mtf -l *.py
 
 test-image:
-    docker build --tag=${IMAGE_REPOSITORY} -f ${DOCKERFILE} .
+	docker build --tag=${IMAGE_REPOSITORY} -f ${DOCKERFILE} .
 
 clean:
 	rm -f $(DOCKERFILE)
