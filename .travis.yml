@@ -5,6 +5,6 @@ sudo: required
 services:
   - docker
 script:
-  - 'make test-image SELECTORS="--distro fedora-26-x86_64.yaml --multispec-selector variant=upstream"'
+  - make DG="docker run -v $(pwd):/var/dgdir slavek/distgen" GOMD2MAN="docker run -v $(pwd):/go/src/github.com/cpuguy83/go-md2man cpuguy83/go-md2man" build
 notifications:
   email: false
