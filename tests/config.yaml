@@ -1,0 +1,20 @@
+document: modularity-testing
+version: 1
+name: dovecot
+modulemd-url: http://raw.githubusercontent.com/container-images/dovecot/master/dovecot.yaml
+service:
+    port: 10143
+packages:
+    rpms:
+        - dovecot
+testdependecies:
+    rpms:
+        - python-expect
+module:
+    docker:
+        setup: echo "dummy:{{PLAIN}}redhat:1000:1000::/var/mail" > root/users;
+               echo "!include auth-passwdfile.conf.ext" >> root/10-auth-conf;
+        start: "docker run -e MYHOSTNAME=localhost -p 10143:10143 -v $(pwd)root/users:/etc/dovecot/users
+         -v $(pwd)root/10-auth.conf:/etc/dovecot/conf.d/10-auth.conf"
+        source: https://github.com/container-images/dovecot.git
+        container: dovecot
