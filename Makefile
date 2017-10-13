@@ -8,7 +8,7 @@ DOCKERFILE_SRC := Dockerfile.template
 DOCKERFILE := Dockerfile
 TEST_IMAGE_NAME := container-images-tests
 
-SELECTORS = --distro ${DISTRO}.yaml --multispec-selector --multispec-selector variant=${VARIANT}
+SELECTORS = --distro ${DISTRO}.yaml --multispec-selector variant=${VARIANT}
 DG_EXEC = ${DG} --max-passes 25 --spec specs/common.yml --multispec specs/multispec.yml ${SELECTORS}
 DISTRO_ID = $(shell ${DG_EXEC} --template "{{ config.os.id }}")
 IMAGE_REPOSITORY = $(shell ${DG_EXEC} --template "{{ spec.image_repository }}")
