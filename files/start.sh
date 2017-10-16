@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Copy all certificates
-#cp /var/certs/*.{crt,pem} /etc/postfix/
-# Wait before postfix is really started.
-
 if [[ ! -z "${DEBUG_MODE}" ]]; then
     rpm -q syslog-ng
     if [[ $? -ne 0 ]]; then

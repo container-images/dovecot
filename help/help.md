@@ -1,23 +1,23 @@
 % DOVECOT(1) Container Image Pages
 % Petr Hracek
-% Jun 1, 2017
+% Oct 1, 2017
 
 # NAME
-dovecot - Secure imap and pop3 server
+{{ spec.envvars.name }} - {{ spec.short_description }}
 
 # DESCRIPTION
-Dovecot container for IMAP server.
+{{ spec.short_description }}
 
 The container itself consists of:
-    - Fedora-26-Boltron baseruntime image
-    - dovecot RPM package
+    - {{ config.docker.from }} base image
+    - {{ spec.envvars.name }} RPM package
 
 Files added to the container during docker build include: /files/start.sh
 
 # USAGE
-To get the memcached container image on your local system, run the following:
+To get the {{ spec.envvars.name }} container image on your local system, run the following:
 
-    docker pull hub.docker.io/modularitycontainers/postfix
+    docker pull {{ spec.image_repository }}
     
 # VOLUMES
 
