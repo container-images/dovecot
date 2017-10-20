@@ -25,6 +25,15 @@ from {{ spec.envvars.name }} point of view.
 
 ## Basic {{ spec.envvars.name }} configuration
 
+## ENVIRONMENT VARIABLES
+
+PLAIN_AUTH variable allows to specify users in ``/etc/dovecot/users` file
+Example format:
+```
+USER:{{PLAIN}}PASSWD:1000:1000::<mail_directory>
+```
+Replace USER and PASSWD with your defined user and passwd respectively.
+
 ## How to test the {{ spec.envvars.name }} service
 
 Command for testing {{ spec.envvars.name }} container with

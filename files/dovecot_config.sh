@@ -14,14 +14,13 @@ function modify_dovecot_conf() {
     update_dovecot_conf "info_log_path" "/var/dovecot/dovecot-info.log"
     update_dovecot_conf "log_path" "/var/dovecot/dovecot.log"
     update_dovecot_conf "protocols" "imap"
-    update_dovecot_conf "ssl" "no"
 
-    #doveconf -n | grep "ssl"
-    #if [[ $? -eq 1 ]]; then
-    #    echo "ssl = yes" >> /etc/dovecot/conf.d/10-ssl.conf
-    #else
-    #    sed -i 's/^ssl\(\s*\)=\(\s*\).*/ssl\1=\2yes/g' /etc/dovecot/conf.d/10-ssl.conf
-    #fi
+    doveconf -n | grep "ssl"
+    if [[ $? -eq 1 ]]; then
+        echo "ssl = yes" >> /etc/dovecot/conf.d/10-ssl.conf
+    else
+        sed -i 's/^ssl\(\s*\)=\(\s*\).*/ssl\1=\2yes/g' /etc/dovecot/conf.d/10-ssl.conf
+    fi
     doveconf -n | grep "service imap-login"
     if [[ $? -eq 1 ]]; then
         cat /files/dovecot_imap.conf >> /etc/dovecot/conf.d/10-master.conf

@@ -10,11 +10,11 @@ packages:
 testdependecies:
     rpms:
         - python2-expect
+        - telnet
 module:
     docker:
         setup: mkdir -p root;
                echo 'dummy:{{PLAIN}}redhat:1000:1000::/var/mail' > root/users;
-               echo '!include auth-passwdfile.conf.ext' > root/10-auth.conf;
-        start: "docker run -e MYHOSTNAME=localhost -p 10143:10143 -v $(pwd)/root/users:/etc/dovecot/users:Z -v $(pwd)/root/10-auth.conf:/etc/dovecot/conf.d/10-auth.conf:Z"
+        start: "docker run -e MYHOSTNAME=localhost -e PLAIN_AUTH=yes -p 10143:10143 -v $(pwd)/root/users:/etc/dovecot/users:Z "
         source: https://github.com/container-images/dovecot.git
         container: dovecot
