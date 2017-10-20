@@ -56,9 +56,10 @@ class DovecotSanityTests(module_framework.AvocadoTest):
 
     def test_dovecot_imap_config(self):
         self.start()
-        self.run("doveconf -n | grep localhost")
-        self.run("doveconf -n | grep mail.localhost")
-        self.run("doveconf -n | grep localhost")
+        self.run("doveconf -n | grep \"protocols = imap\"")
+        self.run("doveconf -n | grep \"ssl = no\"")
+        self.run("doveconf -n | grep \"port = %s\"" % self.getConfig()['service']['port'])
+        self.run("doveconf -n | grep \"auth_mechanisms = plain login\"")
 
     def test_dovecot_skipped(self):
         module_framework.skipTestIf("dovecot" not in self.getActualProfile())

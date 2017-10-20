@@ -7,6 +7,8 @@ GOMD2MAN = /usr/bin/go-md2man
 DOCKERFILE_SRC := Dockerfile.template
 DOCKERFILE := Dockerfile
 TEST_IMAGE_NAME := container-images-tests
+READMEMD_SRC := README.md.template
+READMEMD := README.md
 
 SELECTORS = --distro ${DISTRO}.yaml --multispec-selector variant=${VARIANT}
 DG_EXEC = ${DG} --max-passes 25 --spec specs/configuration.yml --multispec specs/multispec.yml ${SELECTORS}
@@ -19,6 +21,7 @@ install-dependencies:
 dg:
 	${DG_EXEC} --template $(DOCKERFILE_SRC) > $(DOCKERFILE)
 	${DG_EXEC} --template help/help.md > help/help.md.rendered
+	${DG_EXEC} --template $(READMEMD_SRC) > $(READMEMD)
 
 doc: dg
 	mkdir -p ./root/
