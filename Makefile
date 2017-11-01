@@ -35,10 +35,10 @@ run: build
 
 test: build
 	cd tests; MODULE=docker URL="docker=${IMAGE_REPOSITORY}" DOCKERFILE="../$(DOCKERFILE)" VERSION=${VERSION} DISTRO=${DISTRO} mtf-env-set
-	cd tests; MODULE=docker URL="docker=${IMAGE_REPOSITORY}" DOCKERFILE="../$(DOCKERFILE)" VERSION=${VERSION} DISTRO=${DISTRO} mtf --show-job-log *.py
+	cd tests; MODULE=docker URL="docker=${IMAGE_REPOSITORY}" DOCKERFILE="../$(DOCKERFILE)" VERSION=${VERSION} DISTRO=${DISTRO} mtf -l *.py
 
 test-in-container: test-image
-	docker run --rm -ti -v /root/avocado:/root/avocado -v /run/docker.sock:/run/docker.sock:Z -v ${PWD}:/src ${TEST_IMAGE_NAME} "SELECTORS=${SELECTORS}"
+	docker run --rm -ti -v /run/docker.sock:/run/docker.sock:Z -v ${PWD}:/src ${TEST_IMAGE_NAME} "SELECTORS=${SELECTORS}"
 
 test-image:
 	docker build --tag=${TEST_IMAGE_NAME} -f ./Dockerfile.tests .

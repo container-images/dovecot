@@ -5,10 +5,6 @@ sudo: required
 services:
   - docker
 script:
-  - sudo make test-in-container SELECTORS="--distro fedora-26-x86_64.yaml --multispec-selector variant=upstream"
+  - make test-in-container SELECTORS="--distro fedora-26-x86_64.yaml --multispec-selector variant=upstream"
 notifications:
   email: false
-
-after_script:
-  - sudo ls -laR /root/
-  - sudo cat /root/avocado/job-results/latest/job.log

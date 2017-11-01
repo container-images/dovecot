@@ -23,8 +23,6 @@
 
 import socket
 import pexpect
-from avocado import main
-from avocado.core import exceptions
 from moduleframework import module_framework
 
 
@@ -33,17 +31,13 @@ class DovecotSanityTests(module_framework.AvocadoTest):
     :avocado: enable
     """
 
-    def test_connect_to_dovecot_over_openssl(self):
+    def test_connect_to_dovecot_over_telnet(self):
         self.start()
-        #session = ShellSession("openssl s_client -connect localhost:%s -starttls imap" % self.getConfig()['service']['port'])
-        #session.cmd("a login dummy redhat")
-        #session.cmd("a logout")
-        session = pexpect.spawn("telnet localhost %s" % self.getConfig()['service']['port'])
-        #session.expect("* OK")
-        #session.sendline("a login dummy redhat")
-        #session.expect("a OK *")
-        #session.sendline("a logout")
-        #session.expect("a OK")
+        session = pexpect.spawn("telnet localhost %s " % self.getConfig()['service']['port'])
+        session.expect("OK")
+        session.sendline("a login dummy redhat")
+        session.expect("OK")
+        session.sendline("a logout")
         session.close()
 
     def test_dovecot_exists(self):
@@ -60,12 +54,3 @@ class DovecotSanityTests(module_framework.AvocadoTest):
         self.run("doveconf -n | grep \"ssl = no\"")
         self.run("doveconf -n | grep \"port = %s\"" % self.getConfig()['service']['port'])
         self.run("doveconf -n | grep \"auth_mechanisms = plain login\"")
-
-    def test_dovecot_skipped(self):
-        module_framework.skipTestIf("dovecot" not in self.getActualProfile())
-        self.start()
-        self.run("doveconf -n")
-
-
-if __name__ == '__main__':
-    main()

@@ -41,8 +41,6 @@ Replace USER and PASSWD with your defined user and passwd respectively.
 Command for testing dovecot container with
 is ```openssl```.
 
-Telnet can not be used because of communication is encrypted.
-
 For testing example my `users` file looks like:
 ```
 dummy:{PLAIN}redhat:1000:1000::/var/
@@ -61,4 +59,5 @@ a logout
 * BYE Logging out
 a OK Logout completed (0.001 + 0.000 secs).
 Connection closed by foreign host.
+
 ```
