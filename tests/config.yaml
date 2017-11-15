@@ -1,0 +1,20 @@
+document: modularity-testing
+version: 1
+name: dovecot
+modulemd-url: http://raw.githubusercontent.com/container-images/dovecot/master/dovecot.yaml
+service:
+    port: 10143
+packages:
+    rpms:
+        - dovecot
+testdependecies:
+    rpms:
+        - python2-expect
+        - telnet
+module:
+    docker:
+        setup: mkdir -p root;
+               echo 'dummy:{{PLAIN}}redhat:1000:1000::/var/mail' > root/users;
+        start: "docker run -e MYHOSTNAME=localhost -e PLAIN_AUTH=yes -p 10143:10143 -v $(pwd)/root/users:/etc/dovecot/users:Z "
+        source: https://github.com/container-images/dovecot.git
+        container: dovecot

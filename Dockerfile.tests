@@ -1,0 +1,13 @@
+FROM registry.fedoraproject.org/fedora:26
+
+COPY requirements.sh /root/requirements.sh
+
+RUN chmod a+x /root/requirements.sh && \
+    sync && \
+    exec /root/requirements.sh
+
+VOLUME /src
+WORKDIR /src
+# we don't need to create an unprivileged user for the test run
+# since we have complete access to docker socket = root on host
+ENTRYPOINT ["make", "test"]
