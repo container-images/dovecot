@@ -1,0 +1,5 @@
+document: test-metadata
+subtype: general
+enable_lint: True
+import_tests:
+- "*.py"
