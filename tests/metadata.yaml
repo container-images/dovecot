@@ -1,3 +1,5 @@
+# for more info see: https://github.com/fedora-modularity/meta-test-family/blob/devel/mtf/metadata/README.md
+# metadata document with comments: https://github.com/fedora-modularity/meta-test-family/blob/devel/mtf/metadata/examples/general-component/tests/metadata.yaml
 document: test-metadata
 subtype: general
 enable_lint: True
