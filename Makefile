@@ -34,7 +34,7 @@ run: build
 	docker run -e MYHOSTNAME=localhost -e PLAIN_AUTH $(IMAGE_REPOSITORY)
 
 test: build
-	MODULE=docker URL="docker=${IMAGE_REPOSITORY}" DOCKERFILE="../$(DOCKERFILE)" VERSION=${VERSION} DISTRO=${DISTRO} make -C tests test
+	URL="docker=${IMAGE_REPOSITORY}" make -C tests test
 
 test-in-container: test-image
 	docker run --rm -ti -v /run/docker.sock:/run/docker.sock:Z -v ${PWD}:/src ${TEST_IMAGE_NAME} "SELECTORS=${SELECTORS}"
