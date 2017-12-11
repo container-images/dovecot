@@ -11,6 +11,7 @@ testdependecies:
     rpms:
         - python2-expect
         - telnet
+default_module: docker
 module:
     docker:
         setup: mkdir -p root;
