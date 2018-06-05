@@ -31,7 +31,7 @@ dovecot
 
 while true; do
     dovecot_pid=$(cat /var/run/dovecot/master.pid)
-	if [[ ! -d "/proc/$PID" ]]; then
+	if [[ ! -d "$dovecot_pid" ]]; then
 	    echo "Dovecot process $dovecot_pid does not exist."
 	    break
 	fi
